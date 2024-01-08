@@ -1,4 +1,7 @@
 <?php
+/**
+ * PHP opening tag indicating start of PHP code.
+*/
 
 class Controller {
 
