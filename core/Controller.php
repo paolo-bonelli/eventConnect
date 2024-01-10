@@ -18,7 +18,24 @@ class Controller {
 
 }
 
+/**
+ * Crud class provides database CRUD operations with SQL injection protection.
+ * 
+ * Includes methods for creating, reading, updating and deleting records from a database table.
+ * Sanitizes all input to prevent SQL injection. Uses prepared statements and parameter binding.
+ */
 class Crud {
+
+  private static $instance;
+
+  private function __construct() {}
+  
+  public static function getInstance() {
+    if (!isset(self::$instance)) {
+      self::$instance = new Crud();
+    }
+    return self::$instance; 
+  }
 
   private $db;
 
@@ -107,11 +124,6 @@ class Crud {
     
     $stmt = $db->prepare("DELETE FROM $table WHERE $where"); 
     $stmt->bind_param(str_repeat('s', count($sanitized_criteria)), ...array_values($sanitized_criteria));
-    $stmt->execute();
-  }
-
-}
-
 
 
 

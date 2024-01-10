@@ -8,6 +8,7 @@ require_once '../core/Controller.php';
 $app = new Controller();
 
 // Default route
+$app->view('main/header');
 $app->view('home/index');
 
 ?>
