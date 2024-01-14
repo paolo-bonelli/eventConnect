@@ -19,6 +19,43 @@ class Controller {
 }
 
 /**
+ * State class manages the state of the application.
+*/
+
+class State {
+
+  private static $instance;
+  
+  private $state;
+
+  private function __construct() {
+    $this->state = []; 
+  }
+
+  public static function getInstance() {
+    if (!isset(self::$instance)) {
+      self::$instance = new State();
+    }
+    return self::$instance;
+  }
+
+  public function getState() {
+    return $this->state;
+  }
+
+  public function setState($newState) {
+    $this->state = $newState;
+  }
+
+  public function updateState($updatedProperties) {
+    $this->state = array_merge($this->state, $updatedProperties);
+  }
+
+}
+
+
+
+/**
  * Crud class provides database CRUD operations with SQL injection protection.
  * 
  * Includes methods for creating, reading, updating and deleting records from a database table.
@@ -68,7 +105,7 @@ class Crud {
     
     // Execute statement
     $stmt->execute();
-}
+  }
 
 
   public function read($table, $criteria = []) {
@@ -124,7 +161,7 @@ class Crud {
     
     $stmt = $db->prepare("DELETE FROM $table WHERE $where"); 
     $stmt->bind_param(str_repeat('s', count($sanitized_criteria)), ...array_values($sanitized_criteria));
-
-
-
+    $stmt->execute();
+  }
+}
 ?>
