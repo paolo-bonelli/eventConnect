@@ -22,7 +22,6 @@ $routes = [
 
 $app->view('main/header', $data=array('title' => $appState->getState()['title']));
 
-
 if (array_key_exists($requestedRoute, $routes)) {
     $app->view($routes[$requestedRoute]);
     // Call the appropriate controller and method

@@ -6,4 +6,4 @@
     <title><?php echo $data['title'] ?></title>
 </head>
 <body>
-    
+    <header>Header</header>
