@@ -7,13 +7,13 @@ class Controller {
 
     public function model($model) {
         // Load model file
-        require_once '../app/models/' . $model . '.php'; 
+        require_once ROOT . '/app/models/' . $model . '.php'; 
         return new $model();
     }
 
     public function view($view, $data = []) {
         // Load view
-        require_once '../app/views/' . $view . '.php';
+        require_once ROOT . '/app/views/' . $view . '.php';
     }
 
 }
@@ -29,7 +29,7 @@ class State {
   private $state;
 
   private function __construct() {
-    $this->state = []; 
+    $this->state = ['title'=> 'HOME | Event Connect']; 
   }
 
   public static function getInstance() {
